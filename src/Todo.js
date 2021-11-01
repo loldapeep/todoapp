@@ -1,5 +1,6 @@
-import { ListItem, ListItemText, List, ListItemAvatar } from '@mui/material';
-import React from 'react'
+import { ListItem, ListItemText, List, ListItemAvatar, Button } from '@mui/material';
+import React from 'react';
+import db from './firebase';
 
 function Todo(props) {
     return (
@@ -7,8 +8,9 @@ function Todo(props) {
             <ListItem>
             <ListItemAvatar>
             </ListItemAvatar>
-            <ListItemText primary={props.text} secondary="Your todo"/>
+            <ListItemText primary={props.todo.todo} secondary="Your todo"/>
             </ListItem>
+            <Button onClick={event => db.collection('todos').doc(props.todo.id).delete()}>Delete</Button>
         </List>
     )
 }
